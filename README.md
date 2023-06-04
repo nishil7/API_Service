@@ -28,7 +28,7 @@ doctor_id                       char - foriegnKey
 
 The API services provided by the system are :
 ## Doctor
-### /doctor/
+#### /doctor/
 
 * `POST` : Create a new doctor record in the database.
 
