@@ -8,7 +8,7 @@ import (
 
 func Read_doctor(c *gin.Context) {
 	var doctor models.Doctor
-	err := models.DB.Where("id = ?", c.Query("id")).Take(&doctor).Error
+	err := models.DB.Where("id = ?", c.Param("id")).Take(&doctor).Error
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusNotFound, gin.H{"errors": err.Error()})
 		return

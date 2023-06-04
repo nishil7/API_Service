@@ -13,7 +13,7 @@ type update_doctor_info struct {
 
 func Update_doctor(c *gin.Context) {
 	var doctor models.Doctor
-	err := models.DB.Where("id = ?", c.Query("id")).Take(&doctor).Error
+	err := models.DB.Where("id = ?", c.Param("id")).Take(&doctor).Error
 	if err != nil {
 		errors.Statusnot_404(err, c)
 		return
