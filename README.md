@@ -27,8 +27,8 @@ doctor_id                       char - foriegnKey
 ### APIs Endpoints
 
 The API services provided by the system are :
-## Doctor
-#### /doctor/
+## Doctor Database API
+### /doctor/
 
 * `POST` : Create a new doctor record in the database.
 
@@ -40,7 +40,7 @@ The API services provided by the system are :
 }
 ```
 
-#### /doctor/:id
+### /doctor/:id
 * `GET` : Get the doctor details for a particular doctor id
 * `PUT` : Update a doctor details. (only contact number can be updated)
 ### Put Paramaters
@@ -49,8 +49,8 @@ The API services provided by the system are :
     "contact_no":    “1234567890”
 }
 ```
-## Patient
-#### /patient/
+## Patient Database API
+### /patient/
 
 * `POST` : Create a new patient record in the database with doctor id present in the doctor database.
 
@@ -65,7 +65,7 @@ The API services provided by the system are :
 }
 ```
 
-#### /patient/:id
+### /patient/:id
 * `GET` : Get the patient details with the patient id
 * `PUT` : Update a patient details. (Only contact number, address and doctor id is allowed to be updated for a patient)
 ### Put Paramaters
@@ -76,7 +76,7 @@ The API services provided by the system are :
 ```
 
 ## Additional Feature
-#### /fetchPatientByDoctorId/:id
+### /fetchPatientByDoctorId/:id
 
 * `GET` : Fetch details of all patients using doctor id.
 
