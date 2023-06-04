@@ -5,6 +5,7 @@ import (
 	"hms/errors"
 	"hms/models"
 	"net/http"
+	"time"
 )
 
 type update_doctor_info struct {
@@ -24,7 +25,7 @@ func Update_doctor(c *gin.Context) {
 		errors.Badrequest(err, c)
 		return
 	}
-	updated_doctor := models.Doctor{Contact_no: data.Contact_No}
+	updated_doctor := models.Doctor{Contact_no: data.Contact_No, Updated_at: time.Now()}
 	models.DB.Model(&doctor).Updates(&updated_doctor)
 	c.JSON(http.StatusOK, gin.H{"Response": doctor})
 

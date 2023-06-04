@@ -5,6 +5,7 @@ import (
 	"hms/errors"
 	"hms/models"
 	"net/http"
+	"time"
 )
 
 type update_patient_info struct {
@@ -26,7 +27,7 @@ func Update_patient(c *gin.Context) {
 		errors.Badrequest(err, c)
 		return
 	}
-	updated_patient := models.Patient{Contact_no: data.Contact_No, Address: data.Address, Doctor_id: data.Doctor_id}
+	updated_patient := models.Patient{Contact_no: data.Contact_No, Address: data.Address, Doctor_id: data.Doctor_id, Updated_at: time.Now()}
 	err = models.DB.Model(&patient).Updates(&updated_patient).Error
 	if err != nil {
 		errors.Badrequest(err, c)
