@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
+	"gopkg.in/validator.v2"
 	"hms/errors"
 	"hms/models"
 	"net/http"
@@ -9,7 +10,7 @@ import (
 )
 
 type update_doctor_info struct {
-	Contact_No string `json:"contact_no"`
+	Contact_No string `json:"contact_no" validate:"len = 10,regexp = ^[0-9]+$"`
 }
 
 func Update_doctor(c *gin.Context) {
@@ -21,6 +22,11 @@ func Update_doctor(c *gin.Context) {
 	}
 	var data update_doctor_info
 	err = c.ShouldBindJSON(&data)
+	if err != nil {
+		errors.Badrequest(err, c)
+		return
+	}
+	err = validator.Validate(data)
 	if err != nil {
 		errors.Badrequest(err, c)
 		return
