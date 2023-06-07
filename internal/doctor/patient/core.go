@@ -65,7 +65,7 @@ func (co *Core) Create(data *_struct.NewPatientRequest) (_struct.PatientResponse
 
 // Update : This function provides logging and calls the repo for the required operation.
 func (co *Core) Update(data *_struct.UpdatePatientRequest, id string) (_struct.PatientResponse, error) {
-	err := validator.Validate(data)
+	err := validator.Validate(&data)
 	if err != nil {
 		log.Printf(err.Error())
 		return _struct.PatientResponse{}, err

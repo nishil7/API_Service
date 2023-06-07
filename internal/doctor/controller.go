@@ -67,10 +67,10 @@ func (c *Controller) Update(ctx *gin.Context) {
 // FetchPatientByDoctorId : This function fetches the patient with corresponding doctor ids
 func (c *Controller) FetchPatientByDoctorId(ctx *gin.Context) {
 	id := ctx.Param("id")
-	patientResponse, doctorResponse, err := c.core.FetchPatientByDoctorId(id)
+	doctorResponse, err := c.core.FetchPatientByDoctorId(id)
 	if err != nil {
 		common.ErrorHandle(ctx, err)
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"response": patientResponse, "Doctor": doctorResponse})
+	ctx.JSON(http.StatusOK, gin.H{"Doctor": doctorResponse})
 }

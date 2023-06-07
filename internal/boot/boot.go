@@ -10,11 +10,6 @@ import (
 	"log"
 )
 
-// DatabaseInit : Connect to postgres SQL and Creates the table in the database.
-// func NewRepo(DB *gorm.DB) {
-//
-// }
-
 var PatientController *patient.Controller
 var DoctorController *doctor2.Controller
 

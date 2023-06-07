@@ -21,7 +21,7 @@ type ICore interface {
 	FetchById(id string) (_struct.DoctorResponse, error)
 	Create(data *_struct.NewDoctorRequest) (_struct.DoctorResponse, error)
 	Update(data *_struct.UpdateDoctorRequest, id string) (_struct.DoctorResponse, error)
-	FetchPatientByDoctorId(id string) ([]_struct.PatientResponse, _struct.DoctorResponse, error)
+	FetchPatientByDoctorId(id string) (_struct.DoctorResponse, error)
 }
 
 // GenerateResponse : This function Response in json format from the doctor model.
@@ -32,6 +32,7 @@ func GenerateResponse(doctor Doctor) _struct.DoctorResponse {
 		UpdatedAt: doctor.GetUpdatedAt(),
 		Name:      doctor.GetName(),
 		ContactNo: doctor.GetContactNo(),
+		Patient:   GeneratePatientResponse(doctor),
 	}
 	return doctorResponse
 }
@@ -40,7 +41,6 @@ func GenerateResponse(doctor Doctor) _struct.DoctorResponse {
 func GeneratePatientResponse(doctor Doctor) []_struct.PatientResponse {
 	var patientResponse []_struct.PatientResponse
 	for i := 0; i < len(doctor.Patient); i++ {
-		log.Println("g")
 		temp := _struct.PatientResponse{
 			Id:        doctor.Patient[i].GetId(),
 			CreatedAt: doctor.Patient[i].GetCreatedAt(),
@@ -99,13 +99,12 @@ func (co *Core) Update(data *_struct.UpdateDoctorRequest, id string) (_struct.Do
 }
 
 // FetchPatientByDoctorId : This function provides logging and calls the repo for the required operation.
-func (co *Core) FetchPatientByDoctorId(id string) ([]_struct.PatientResponse, _struct.DoctorResponse, error) {
+func (co *Core) FetchPatientByDoctorId(id string) (_struct.DoctorResponse, error) {
 	doctor, err := co.repository.FetchPatientByDoctorId(id)
 	if err != nil {
 		log.Printf(err.Error())
-		return nil, _struct.DoctorResponse{}, err
+		return _struct.DoctorResponse{}, err
 	}
 	doctorResponse := GenerateResponse(doctor)
-	patientResponse := GeneratePatientResponse(doctor)
-	return patientResponse, doctorResponse, err
+	return doctorResponse, err
 }
