@@ -1,4 +1,4 @@
-## API for Hospital Management System
+## API Service for Hospital Management System
 This is An Create, Read, Update API for a Hospital Management System <br />
 Api is Written using **GoLang** <br />
 Database Used : **Postgres** <br />
