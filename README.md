@@ -42,8 +42,8 @@ The API services provided by the system are :
 
 ### /doctor/:id
 * `GET` : Get the doctor details for a particular doctor id
-* `PUT` : Update a doctor details. (only contact number can be updated)
-### Put Paramaters
+* `PATCH` : Update a doctor details. (only contact number can be updated)
+### Patch Paramaters
 ```
 {
     "contact_no":    “1234567890”
@@ -67,8 +67,8 @@ The API services provided by the system are :
 
 ### /patient/:id
 * `GET` : Get the patient details with the patient id
-* `PUT` : Update a patient details. (Only contact number, address and doctor id is allowed to be updated for a patient)
-### Put Paramaters
+* `PATCH` : Update a patient details. (Only contact number, address and doctor id is allowed to be updated for a patient)
+### Patch Paramaters
 ```
 {
      “doctor_id”: “10002”
